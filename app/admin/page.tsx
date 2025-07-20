@@ -103,6 +103,25 @@ ${request.priority === 'high' ? '• ควรดำเนินการภา�
     return suggestions
   }
 
+  // ฟังก์ชัน Export ข้อมูลแจ้งซ่อม
+  const exportRepairRequests = () => {
+    if (typeof window === 'undefined') return
+    const data = localStorage.getItem('repair_requests')
+    if (!data) {
+      alert('ไม่พบข้อมูล')
+      return
+    }
+    const blob = new Blob([data], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'repair_requests_export.json'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Header */}
@@ -180,6 +199,15 @@ ${request.priority === 'high' ? '• ควรดำเนินการภา�
               </div>
             </div>
           </div>
+        </div>
+        {/* Export Button */}
+        <div className="flex justify-end mb-6">
+          <button
+            onClick={exportRepairRequests}
+            className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2 rounded-lg font-semibold shadow-md transition-all"
+          >
+            ⬇️ Export ข้อมูลแจ้งซ่อม
+          </button>
         </div>
 
         {/* AI Analysis Panel */}
