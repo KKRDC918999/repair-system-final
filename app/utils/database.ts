@@ -10,6 +10,8 @@ export interface RepairRequest {
   phone: string
   createdAt: Date
   updatedAt: Date
+  department: string
+  assignedTo?: string
 }
 
 // Local Storage Database Operations
@@ -43,7 +45,9 @@ export class RepairDatabase {
       ...request,
       id: this.generateId(),
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      department: request.department,
+      assignedTo: request.assignedTo || '',
     }
     
     const requests = this.getAllRequests()
@@ -263,7 +267,9 @@ export class RepairDatabase {
           status: 'pending',
           category: 'ระบบปรับอากาศ',
           requester: 'คุณสมชาย ใจดี',
-          phone: '081-234-5678'
+          phone: '081-234-5678',
+          department: 'ฝ่ายบริหาร',
+          assignedTo: 'พนักงาน A'
         },
         {
           title: 'ไฟในห้องน้ำเสีย',
@@ -273,7 +279,9 @@ export class RepairDatabase {
           status: 'in-progress',
           category: 'ระบบไฟฟ้า',
           requester: 'คุณสมหญิง รักดี',
-          phone: '082-345-6789'
+          phone: '082-345-6789',
+          department: 'ฝ่ายบริหาร',
+          assignedTo: 'พนักงาน B'
         },
         {
           title: 'ประตูเปิดปิดยาก',
@@ -283,7 +291,9 @@ export class RepairDatabase {
           status: 'completed',
           category: 'งานไม้',
           requester: 'คุณสมศักดิ์ มั่นคง',
-          phone: '083-456-7890'
+          phone: '083-456-7890',
+          department: 'ฝ่ายบริหาร',
+          assignedTo: 'พนักงาน A'
         },
         {
           title: 'เครื่องถ่ายเอกสารเสีย',
@@ -293,7 +303,9 @@ export class RepairDatabase {
           status: 'pending',
           category: 'อุปกรณ์สำนักงาน',
           requester: 'คุณสมปอง ใจเย็น',
-          phone: '084-567-8901'
+          phone: '084-567-8901',
+          department: 'ฝ่ายบริหาร',
+          assignedTo: 'พนักงาน B'
         },
         {
           title: 'น้ำรั่วจากท่อ',
@@ -303,7 +315,9 @@ export class RepairDatabase {
           status: 'in-progress',
           category: 'ระบบน้ำ',
           requester: 'คุณสมศรี รักสะอาด',
-          phone: '085-678-9012'
+          phone: '085-678-9012',
+          department: 'ฝ่ายบริหาร',
+          assignedTo: 'พนักงาน A'
         }
       ]
       

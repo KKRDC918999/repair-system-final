@@ -219,12 +219,29 @@ a {
 
 /* Print Styles */
 @media print {
-  .no-print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  #root > div:first-child { /* Hide navbar/topbar */
     display: none !important;
   }
-  
-  .print-only {
-    display: block !important;
+  .btn-primary, .btn-secondary, button, select, input, .dark-mode-toggle, .language-toggle {
+    display: none !important;
+  }
+  a {
+    text-decoration: underline;
+    color: #000 !important;
+  }
+  .shadow, .shadow-xl, .rounded-xl, .rounded, .bg-white, .bg-gray-900, .dark\:bg-gray-900 {
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+  .bg-gradient-to-br, .bg-gradient-to-r, .bg-gradient-to-l, .bg-gradient-to-t, .bg-gradient-to-b {
+    background: #fff !important;
+  }
+  .print-hidden {
+    display: none !important;
   }
 }
 
